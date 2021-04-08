@@ -18,6 +18,8 @@ namespace SportsStore.Models
         }
 
         //METHODS
+        
+        //CREATE
         public Product Create(Product product)
         {
             _context.Products.Add(product);
@@ -25,6 +27,7 @@ namespace SportsStore.Models
             return product;
         }
 
+        //READ
         public bool DeleteProduct(int id)
         {
             Product productToDelete = _context.Products.Find(id);
@@ -60,19 +63,23 @@ namespace SportsStore.Models
                .Where(p => p.Name.Contains(keyword));
         }
 
-        public Product UpdateProduct(Product product)
+        //UPDATE
+        public Product UpdateProduct(Product p)
         {
-            Product productToUpdate = _context.Products.SingleOrDefault(p => p.ProductId == product.ProductId);
-            if (productToUpdate != null)
+            Product productToUpdate = _context.Products.Find(p.ProductId);
+            if(productToUpdate != null)
             {
-                productToUpdate.Category = product.Category;
-                productToUpdate.Description = product.Description;
-                productToUpdate.Name = product.Name;
-                productToUpdate.Price = product.Price;
+                productToUpdate.Category = p.Category;
+                productToUpdate.Description = p.Description;
+                productToUpdate.Name = p.Name;
+                productToUpdate.Price = p.Price;
                 _context.SaveChanges();
             }
             return productToUpdate;
         }
+
+
+        //DELETE
 
 
     }

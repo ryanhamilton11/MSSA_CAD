@@ -54,6 +54,27 @@ namespace SportsStore.Controllers
             return View(productsWithKeyword);
         }
 
+        public IActionResult Update(int id)
+        {
+            Product p = _repository.GetProductById(id);
+            if (p != null)
+            {
+                return View(p);
+            }
+            return RedirectToAction("Index");
+        }
+        
+        [HttpPost]
+        public IActionResult Update(Product p)
+        {
+            Product updatedProduct = _repository.UpdateProduct(p);
+            return RedirectToAction("Index");
+        }
+
+
+
+
+
         [HttpGet]
         public IActionResult Delete(int id)
         {
@@ -71,16 +92,6 @@ namespace SportsStore.Controllers
             _repository.DeleteProduct(id);
             return RedirectToAction("Index");
         }
-
-
-        [HttpPut]
-        public IActionResult Update(Product product, int id)
-        {
-            product.ProductId = id;
-            _repository.UpdateProduct(product);
-            return RedirectToAction("Index");
-        }
-
 
         
 

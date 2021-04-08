@@ -20,7 +20,7 @@ namespace SportsStore.Models
         public IQueryable<Product> GetProductsByKeyword(string keyword);
 
         //UPDATE
-        public Product UpdateProduct(Product product);
+        public Product UpdateProduct(Product p);
 
         //DELETE
         public bool DeleteProduct(int id);
