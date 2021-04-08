@@ -22,7 +22,12 @@
         </tr>
         <tr>
             <th></th>
-            <td> <input type="submit" value="Update" /> </td>
+            <td>
+                <input type="submit" value="Update" />
+                <a asp-action="Details"asp-route-id-productId="@Model.ProductId">
+                    Cancel
+                </a>
+            </td>
         </tr>
     </table>
 </form>

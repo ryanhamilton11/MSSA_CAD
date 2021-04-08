@@ -13,15 +13,19 @@ namespace SportsStore.Controllers
         private IProductRepository _repository;
         private int _pageSize = 4;
 
+
+
         //CONSTRUCTORS
         public HomeController (IProductRepository repository)//Dependency Injection(DI) OR Inversion of Control (IOC)
         {
             _repository = repository;
         }
 
+
+
+
         //METHODS
         //public IActionResult Index() => View(_repository.GetAllProducts());
-
         public IActionResult Index(int productPage = 1)
         {
             IQueryable<Product> allProducts = _repository.GetAllProducts();
@@ -30,6 +34,7 @@ namespace SportsStore.Controllers
                                                           .Take(_pageSize);
             return View(someProducts);
         }
+
         public IActionResult Categories()
         {
             IQueryable<string> categories = _repository.GetAllCategories();
@@ -48,35 +53,33 @@ namespace SportsStore.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Search(string id)
+        public IActionResult Search(string productid)
         {
-            IQueryable<Product> productsWithKeyword = _repository.GetProductsByKeyword(id);
+            IQueryable<Product> productsWithKeyword = _repository.GetProductsByKeyword(productid);
             return View(productsWithKeyword);
         }
 
-        public IActionResult Update(int id)
-        {
-            Product p = _repository.GetProductById(id);
-            if (p != null)
-            {
-                return View(p);
-            }
-            return RedirectToAction("Index");
-        }
-        
-        [HttpPost]
-        public IActionResult Update(Product p)
-        {
-            Product updatedProduct = _repository.UpdateProduct(p);
-            return RedirectToAction("Index");
-        }
 
 
 
-
-
+        //CREATE
         [HttpGet]
-        public IActionResult Delete(int id)
+        public IActionResult Add() => View();
+       
+        [HttpPost]
+        public IActionResult Add(Product p)
+        {
+            _repository.Create(p);
+            return RedirectToAction("Index");
+        }
+
+
+
+
+
+        //UPDATE
+        [HttpGet]
+        public IActionResult Update(int id)
         {
             Product product = _repository.GetProductById(id);
             if (product != null)
@@ -87,13 +90,33 @@ namespace SportsStore.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(Product product, int id)
+        public IActionResult Update(Product p)
+        {
+            Product updatedProduct = _repository.UpdateProduct(p);
+            //return RedirectToAction("Index");
+            return RedirectToAction("Details", new { productId = p.ProductId });
+        }
+
+
+
+
+        //DELETE
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            Product p = _repository.GetProductById(id);
+            if (p != null)
+            {
+                return View(p);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Delete2(int id)
         {
             _repository.DeleteProduct(id);
             return RedirectToAction("Index");
         }
-
-        
-
     }
 }

@@ -18,28 +18,18 @@ namespace SportsStore.Models
         }
 
         //METHODS
-        
         //CREATE
-        public Product Create(Product product)
+        public Product Create(Product p)
         {
-            _context.Products.Add(product);
+            _context.Products.Add(p);
             _context.SaveChanges();
-            return product;
+            return p;
         }
 
-        //READ
-        public bool DeleteProduct(int id)
-        {
-            Product productToDelete = _context.Products.Find(id);
-            if (productToDelete == null)
-            {
-                return false;
-            }
-            _context.Products.Remove(productToDelete);
-            _context.SaveChanges();
-            return true;
-        }
 
+
+
+        //READ        
         public IQueryable<string> GetAllCategories()
         {
             IQueryable<string> categories = _context.Products
@@ -63,11 +53,14 @@ namespace SportsStore.Models
                .Where(p => p.Name.Contains(keyword));
         }
 
+
+
+
         //UPDATE
         public Product UpdateProduct(Product p)
         {
             Product productToUpdate = _context.Products.Find(p.ProductId);
-            if(productToUpdate != null)
+            if (productToUpdate != null)
             {
                 productToUpdate.Category = p.Category;
                 productToUpdate.Description = p.Description;
@@ -79,8 +72,20 @@ namespace SportsStore.Models
         }
 
 
-        //DELETE
 
+
+        //DELETE
+        public bool DeleteProduct(int id)
+        {
+            Product productToDelete = GetProductById(id);
+            if (productToDelete == null)
+            {
+                return false;
+            }
+            _context.Products.Remove(productToDelete);
+            _context.SaveChanges();
+            return true;
+        }
 
     }
 }

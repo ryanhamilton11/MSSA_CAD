@@ -6,7 +6,7 @@
 <h4> Category: @Model.Category </h4>
 <h1> Are You Sure? </h1>
 <form method="post">
-    <button asp-action="Delete"> Delete </button>
+    <button asp-action="Delete2" asp-route-id="@Model.ProductId"> Delete </button>
     <button asp-action="Index" formmethod="get">
         Cancel
     </button>

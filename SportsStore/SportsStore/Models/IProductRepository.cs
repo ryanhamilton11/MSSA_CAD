@@ -8,7 +8,7 @@ namespace SportsStore.Models
     public interface IProductRepository
     {
         //CREATE
-        Product Create(Product product);
+        public Product Create(Product p);
 
         //READ
         public IQueryable<string> GetAllCategories();
