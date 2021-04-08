@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulletProofConsoleInput", "BulletProofConsoleInput\BulletProofConsoleInput.csproj", "{24DCD62B-D010-4BB8-952A-B6FA6950AC14}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24DCD62B-D010-4BB8-952A-B6FA6950AC14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24DCD62B-D010-4BB8-952A-B6FA6950AC14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24DCD62B-D010-4BB8-952A-B6FA6950AC14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24DCD62B-D010-4BB8-952A-B6FA6950AC14}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {24D5390E-9F03-488E-A596-BF20AC52D52A}
+	EndGlobalSection
+EndGlobal
