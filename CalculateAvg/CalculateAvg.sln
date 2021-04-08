@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculateAvg", "CalculateAvg\CalculateAvg.csproj", "{F94DA32E-7AED-4B29-BC6C-4BE65FCD0285}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F94DA32E-7AED-4B29-BC6C-4BE65FCD0285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F94DA32E-7AED-4B29-BC6C-4BE65FCD0285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F94DA32E-7AED-4B29-BC6C-4BE65FCD0285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F94DA32E-7AED-4B29-BC6C-4BE65FCD0285}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E7A93AB5-60AF-42B0-BB66-C8BD19F42201}
+	EndGlobalSection
+EndGlobal
