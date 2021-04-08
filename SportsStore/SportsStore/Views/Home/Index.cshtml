@@ -14,3 +14,9 @@
     <a asp-controller="Home" asp-action="Details" asp-route-id="@p.ProductId">Details</a>
     <hr />
 }
+
+@for(int i = 1; i <+ ViewBag.ProductCount / 3; i++)
+{
+    <a asp-action="Index" asp-route-productPage="@i" >Page @i </a>
+    @:&nbsp;  |  &nbsp;
+}

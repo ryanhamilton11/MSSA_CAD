@@ -32,6 +32,9 @@ namespace SportsStore.Controllers
             IQueryable<Product> someProducts = allProducts.OrderBy(p => p.ProductId)
                                                           .Skip((productPage - 1) * _pageSize)
                                                           .Take(_pageSize);
+            //int productCount = allProducts.Count();
+            ViewBag.ProductCount = allProducts.Count();
+
             return View(someProducts);
         }
 
