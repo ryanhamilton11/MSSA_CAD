@@ -19,7 +19,6 @@ namespace SportsStore.Controllers
             _repository = repository;
         }
 
-
         //METHODS
         //public IActionResult Index() => View(_repository.GetAllProducts());
 
@@ -30,6 +29,13 @@ namespace SportsStore.Controllers
                                                           .Skip((productPage - 1) * _pageSize)
                                                           .Take(_pageSize);
             return View(someProducts);
+        }
+        public IActionResult Categories()
+        {
+            IQueryable<string> categories = _repository.GetAllCategories();
+            IQueryable<string> lengthCategories = categories.OrderBy(s => s.Length)
+                                                            .ThenByDescending(s => s);
+            return View(lengthCategories);
         }
 
         public IActionResult Details(int id)

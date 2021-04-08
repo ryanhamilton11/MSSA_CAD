@@ -11,8 +11,12 @@ namespace SportsStore.Models
         Product Create(Product product);
 
         //READ
+        public IQueryable<string> GetAllCategories();
+
         public IQueryable<Product> GetAllProducts();
+
         public Product GetProductById(int productId);
+
         public IQueryable<Product> GetProductsByKeyword(string keyword);
 
         //UPDATE

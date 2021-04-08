@@ -24,6 +24,7 @@ namespace SportsStore.Models
             _context.SaveChanges();
             return product;
         }
+
         public bool DeleteProduct(int id)
         {
             Product productToDelete = _context.Products.Find(id);
@@ -36,6 +37,13 @@ namespace SportsStore.Models
             return true;
         }
 
+        public IQueryable<string> GetAllCategories()
+        {
+            IQueryable<string> categories = _context.Products
+                                                    .Select(p => p.Category)
+                                                    .Distinct();
+            return categories;
+        }
 
         public IQueryable<Product> GetAllProducts() => _context.Products;
 

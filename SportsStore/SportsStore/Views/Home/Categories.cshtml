@@ -1,0 +1,16 @@
+﻿@model IQueryable<string>
+
+<h3>Product Categories</h3>
+
+<ul>
+    @foreach (string cat in Model)
+    {
+        <li>@cat</li>
+    }
+</ul>
+
+@foreach (string cat in Model)
+{
+    @cat
+    @: &nbsp;
+}
