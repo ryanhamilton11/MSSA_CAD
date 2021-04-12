@@ -1,4 +1,4 @@
-﻿@model IQueryable<Product>
+﻿@model ProductListViewModel
 
 <h4>Welcome To SportsStore</h4>
 
@@ -6,7 +6,7 @@
 
 <hr />
 
-@foreach (Product p in Model)
+@foreach (Product p in Model.Products)
 {
     <h3>@p.Name</h3>
     @p.Description
@@ -15,8 +15,13 @@
     <hr />
 }
 
-@for(int i = 1; i <+ ViewBag.ProductCount / 3; i++)
+@for (int i = 1; i <= Model.PagingInfo.TotalPages; i++)
 {
-    <a asp-action="Index" asp-route-productPage="@i" >Page @i </a>
-    @:&nbsp;  |  &nbsp;
+    <a asp-route-productPage="@i"> @i </a>
 }
+
+
+<h5>
+    Page @ViewBag.Paging.CurrentPage
+    of   @ViewBag.Paging.TotalPages();
+</h5>
