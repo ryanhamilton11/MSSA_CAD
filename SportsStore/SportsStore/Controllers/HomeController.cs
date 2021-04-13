@@ -11,7 +11,7 @@ namespace SportsStore.Controllers
     {
         //FIELDS & PROPERTIES
         private IProductRepository _repository;
-        private int _pageSize = 4;
+        private int _pageSize = 3;
 
 
 
@@ -23,24 +23,24 @@ namespace SportsStore.Controllers
 
 
 
-
         //METHODS
         //public IActionResult Index() => View(_repository.GetAllProducts());
         public IActionResult Index(int productPage = 1)
         {
-            IQueryable<Product> allProducts = _repository.GetAllProducts();
-            IQueryable<Product> someProducts = allProducts.OrderBy(p => p.ProductId)
-                                                          .Skip((productPage - 1) * _pageSize)
-                                                          .Take(_pageSize);
-            PagingInfo pi = new PagingInfo();
-            pi.TotalItems = allProducts.Count();
-            pi.ItemsPerPage = _pageSize;
-            pi.CurrentPage = productPage;
+            ProductListViewModel plvm = new ProductListViewModel();
 
-            ViewBag.ProductCount = allProducts.Count();
-            ViewBag.Paging = pi;
+            plvm.PagingInformation = new PagingInfo();
+            plvm.PagingInformation.CurrentPage = productPage;
+            plvm.PagingInformation.ItemsPerPage = _pageSize;
+            plvm.PagingInformation.TotalItems = _repository.GetAllProducts().Count();
 
-            return View(someProducts);
+            plvm.Products = _repository.GetAllProducts()
+                                       .OrderBy(p => p.ProductId)
+                                       .Skip((productPage - 1) * _pageSize)
+                                       .Take(_pageSize);
+
+            return View(plvm);
+
         }
 
         public IActionResult Categories()
