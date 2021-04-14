@@ -19,6 +19,15 @@ namespace SportsStore.Infrastructure
         //FIELDS & PROPERTIES
         private IUrlHelperFactory _urlHelperFactory;
         public string PageAction { get; set; }
+
+        public string PageClass { get; set; }
+
+        public bool PageClassEnabled { get; set; } = false;
+
+        public string PageClassNormal { get; set; }
+
+        public string PageClassSelected { get; set; }
+
         public PagingInfo PageModel { get; set; }
 
         [ViewContext]
@@ -42,19 +51,26 @@ namespace SportsStore.Infrastructure
             
             for (int i = 1; i <= PageModel.TotalPages; i++)
             {
-                if (i != PageModel.CurrentPage)
-                {
+            
                     TagBuilder anchorTag = new TagBuilder("a");
                     anchorTag.Attributes["href"] = urlHelper.Action(PageAction, new { productPage = i });
-                    anchorTag.InnerHtml.Append($"Page {i}");
-                    result.InnerHtml.AppendHtml(anchorTag);
-                    result.InnerHtml.AppendHtml("&nbsp; &nbsp;");
-                }
-                else
-                {
-                    result.InnerHtml.AppendHtml($"Page {i} &nbsp; &nbsp;");
-                }
-            }
+
+                    if (PageClassEnabled)
+                    {
+                        anchorTag.AddCssClass(PageClass);
+                        if(i==PageModel.CurrentPage)
+                        {
+                            anchorTag.AddCssClass(PageClassSelected);
+                        }
+                        else
+                        {
+                            anchorTag.AddCssClass(PageClassNormal);
+                        }
+                    }
+
+                anchorTag.InnerHtml.Append($"Page {i}");
+                result.InnerHtml.AppendHtml(anchorTag);
+             }
             output.Content.AppendHtml(result.InnerHtml);
         }
 

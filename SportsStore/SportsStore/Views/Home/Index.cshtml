@@ -1,46 +1,22 @@
 ﻿@model ProductListViewModel
 
-<h4>Welcome To SportsStore</h4>
+<h4 class="badge badge-success">Welcome To SportsStore</h4>
 
 <a asp-action="Add"> Add New Product </a>
 
-<hr />
-
 @foreach (Product p in Model.Products)
 {
-    <h3>@p.Name</h3>
-    @p.Description
-    <h4>@p.Price.ToString("C")</h4>
-    <a asp-controller="Home" asp-action="Details" asp-route-id="@p.ProductId">Details</a>
-    <hr />
+    @Html.Partial("ProductSummary", p)
+    <partial name="ProductSummary" model="@p" />
 }
 
-@*<div page-model="@Model.PagingInformation" page-action="Index"></div>*@
 
-@*@for (int i = 1; i <= Model.PagingInformation.TotalPages; i++)
-    {
-        <a asp-route-productPage="@i"> @i </a>
-    }*@
+<div page-model="@Model.PagingInformation"
+     page-action="Index"
+     page-class-enabled="true"
+     page-class="btn"
+     page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary"
+     class="btn-group pull-right m-1">
 
-
-<h5>
-    Page @Model.PagingInformation.CurrentPage
-    of   @Model.PagingInformation.TotalPages
-</h5>
-
-@*
-@for (int i = 1; i <= Model.PagingInformation.TotalPages; i++)
-{
-    if (i == Model.PagingInformation.CurrentPage)
-    {
-        <em><strong>Page @i</strong></em>
-    }
-    else
-    {
-        <a asp-controller="HomeController" asp-action="Index" asp-route-productPage="@i">Page @i</a>
-    }
-    @: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-}
-*@
-
-<div page-model="@Model.PagingInformation" page-action="Index"></div>
+</div>
