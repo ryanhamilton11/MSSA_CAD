@@ -1,0 +1,20 @@
+﻿@model IQueryable<Product>
+
+<h2> List of @Model.Count() Products</h2>
+
+@foreach (Product p in Model)
+{
+    <partial name="ProductSummary" model="@p" />
+}
+
+<h3>Categories</h3>
+
+<ul>
+    @foreach (IGrouping<string, Product> catProd in ViewBag.Categories)
+    {
+        string key = catProd.Key;
+        int count = catProd.Count();
+        Product[] z = catProd.ToArray();
+        <li>@key @count @catProd.Select(p => p.Price).Average().ToString("C")</li>
+    }
+</ul>

@@ -43,6 +43,26 @@ namespace SportsStore.Controllers
 
         }
 
+        public IActionResult Index2()
+        {
+            IQueryable<Product> allProducts = _repository.GetAllProducts();
+
+            IQueryable<Product> someProducts = allProducts.Where(p => p.Price >= 50)
+                                                          .OrderByDescending(p => p.Price);
+
+            var catProds = allProducts.AsEnumerable().GroupBy(p => p.Category);
+            foreach(var catProd in catProds)
+            {
+                string key = catProd.Key;
+                int count = catProd.Count();
+                Product[] z = catProd.ToArray();
+            }
+
+            ViewBag.Categories = catProds;
+
+            return View(someProducts);
+        }
+
         public IActionResult Categories()
         {
             IQueryable<string> categories = _repository.GetAllCategories();
